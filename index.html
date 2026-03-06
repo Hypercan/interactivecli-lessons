@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Komut satırı ve Terminal temellerini Türkçe olarak öğren! İnteraktif terminal simülatörü ile pwd, ls, cd, mkdir komutlarını keşfet."
+    />
+    <meta
+      name="keywords"
+      content="terminal, komut satırı, command line, linux, türkçe, öğren, interaktif"
+    />
+    <title>Terminal Macerası — Komut Satırını Öğren!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header id="app-header">
+      <div class="header-left">
+        <span class="logo-icon">⌨️</span>
+        <h1 class="logo-text">
+          Terminal<span class="logo-accent">Macerası</span>
+        </h1>
+      </div>
+      <div class="header-center">
+        <div class="progress-wrapper">
+          <div class="progress-label">İlerleme</div>
+          <div class="progress-bar-track">
+            <div
+              id="progress-bar-fill"
+              class="progress-bar-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div id="progress-text" class="progress-text">0 / 6</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="xp-badge">
+          <span class="xp-icon">⭐</span>
+          <span id="xp-count" class="xp-count">0</span>
+          <span class="xp-label">XP</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="app-main">
+      <!-- LEFT PANEL — Lesson -->
+      <section id="lesson-panel" class="panel">
+        <div class="lesson-scroll-area">
+          <!-- Chapter badge -->
+          <div id="chapter-badge" class="chapter-badge">
+            <span class="chapter-number">BÖLÜM 1</span>
+          </div>
+
+          <!-- Lesson Title -->
+          <h2 id="lesson-title" class="lesson-title">Yükleniyor...</h2>
+
+          <!-- Narrative -->
+          <div id="lesson-narrative" class="lesson-narrative">
+            <p>Yükleniyor...</p>
+          </div>
+
+          <!-- Mission Card -->
+          <div id="mission-card" class="mission-card">
+            <div class="mission-header">
+              <span class="mission-icon">🎯</span>
+              <span class="mission-label">GÖREV</span>
+            </div>
+            <p id="mission-text" class="mission-text">Yükleniyor...</p>
+          </div>
+
+          <!-- Hint Area -->
+          <div id="hint-area" class="hint-area hidden">
+            <div class="hint-header">
+              <span class="hint-icon">💡</span>
+              <span class="hint-label">İPUCU</span>
+            </div>
+            <p id="hint-text" class="hint-text"></p>
+          </div>
+
+          <!-- Command Info Box -->
+          <div id="command-info" class="command-info">
+            <div class="command-info-header">
+              <span class="command-info-icon">📖</span>
+              <span class="command-info-label">KOMUT BİLGİSİ</span>
+            </div>
+            <div id="command-info-content" class="command-info-content"></div>
+          </div>
+
+          <!-- Success Message -->
+          <div id="success-message" class="success-message hidden">
+            <span class="success-icon">🎉</span>
+            <p id="success-text" class="success-text"></p>
+            <span class="success-xp" id="success-xp">+50 XP</span>
+          </div>
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="lesson-actions">
+          <button id="btn-hint" class="btn btn-hint" title="İpucu göster">
+            <span>💡</span> İpucu
+          </button>
+          <button id="btn-next" class="btn btn-next disabled" disabled>
+            Sonraki Adım <span>▶</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL — Terminal -->
+      <section id="terminal-panel" class="panel">
+        <div class="terminal-chrome">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="terminal-title">ogrenci@terminal-macerasi:~</div>
+        </div>
+        <div id="terminal-body" class="terminal-body">
+          <div id="terminal-output" class="terminal-output"></div>
+          <div id="terminal-input-line" class="terminal-input-line">
+            <span id="terminal-prompt" class="terminal-prompt"
+              >ogrenci@terminal:~$</span
+            >
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="terminal-input"
+                class="terminal-input"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                autofocus
+              />
+              <span class="cursor-blink"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Scanline overlay for retro effect -->
+        <div class="scanlines"></div>
+      </section>
+    </main>
+
+    <!-- ===== COMPLETION MODAL ===== -->
+    <div id="completion-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="modal-stars">🌟🏆🌟</div>
+        <h2 class="modal-title">TEBRİKLER!</h2>
+        <p class="modal-text">
+          Tüm görevleri başarıyla tamamladın! Artık terminali kullanmaya
+          hazırsın!
+        </p>
+        <div class="modal-stats">
+          <div class="stat-box">
+            <span class="stat-value" id="final-xp">0</span>
+            <span class="stat-label">Toplam XP</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value" id="final-commands">0</span>
+            <span class="stat-label">Komut Öğrenildi</span>
+          </div>
+        </div>
+        <button id="btn-restart" class="btn btn-restart">
+          🔄 Baştan Başla
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
